@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Login no Dispositivo</string>
+
+    <string name="tag">LOGIN_LOCAL</string>
+
     <string name="usuario">Usuário</string>
     <string name="hint_usuario">Digite seu e-mail</string>
     <string name="senha">Senha</string>
