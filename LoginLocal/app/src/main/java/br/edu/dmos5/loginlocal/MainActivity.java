@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button logarButton;
     private CheckBox lembrarCheckBox;
     private TextView novoUsuarioTextView;
+    private String usuario; //Tá certo isso?
+    private String senha; //Tá certo isso?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
