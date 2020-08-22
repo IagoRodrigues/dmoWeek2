@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Vamos instanciar as preferencias em modo privado, ou seja, somente acessíveis
         //ao próprio app.
         mSharedPreferences = this.getPreferences(MODE_PRIVATE);
+        //mSharedPreferences = this.getSharedPreferences(getString(R.string.file_preferences),MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
     }
 
     /*
     Esse método executa toda vez depois da activity ser criada ou restartada
      */
-    @Override
     protected void onStart() {
         Log.i(getString(R.string.tag), "Classe: " + getClass().getSimpleName() + "| Método : onStart()");
         super.onStart();
@@ -74,8 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         Log.i(getString(R.string.tag), "Classe: " + getClass().getSimpleName() + "| Método : onResume()");
+
                 //Vamos verificar se o usuário possui preferências
                 verificarPreferencias();
+
         super.onResume();
     }
 
@@ -96,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onStop();
     }
 
+    /*
+    Executado toda vez que rotacionamos a tela, quando fechamos a activity e quando a activity está
+    na pilha e é necessário liberar memória
+     */
     @Override
     protected void onDestroy() {
         Log.i(getString(R.string.tag), "Classe: " + getClass().getSimpleName() + "| Método : onDestroy()");
@@ -103,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /*
-    Dois return no mesmo método?? O.o hahaha
+    Três return no mesmo método?? O.o hahaha
     Podemos criar uma exception para campos vazios como eu fiz na semana 1
      */
     @Override
@@ -115,10 +121,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, R.string.erro_entrada_msg, Toast.LENGTH_SHORT).show();
                 return;
             }
+
             //Antes de abrir a outra tela se verifica se o usuário deseja armazenar
             //os dados de login para outros acessos.
             salvaPreferencias();
             abrirBoasVindas();
+            return;
+        }
+        if(view == novoUsuarioTextView){
+            Intent in = new Intent(this, NovoUsuarioActivity.class);
+            startActivity(in);
             return;
         }
     }
